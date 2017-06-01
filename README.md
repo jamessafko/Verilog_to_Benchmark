@@ -31,4 +31,3 @@ else if (line.startsWith("classNameHere")) {
 	((classNameHere) hm.get("classNameHere")).addclassNameHere(findOutputInputsName(line, bufhm), hm);
 	(hm.get("classNameHere")).count++;
 }
-

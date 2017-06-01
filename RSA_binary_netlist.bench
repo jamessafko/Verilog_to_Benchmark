@@ -1,0 +1,82 @@
+# 2 inputs
+# 1 outputs
+# 7 D-type flipflops
+# 9 inverters
+# 46 gates (30 NANDs + 2 ORs + 14 NORs)
+
+INPUT(clk)
+INPUT(start)
+
+OUTPUT(finished)
+
+round_index[0] = DFF(n57)
+round_index[3] = DFF(n56)
+n61 = DFF(next_FSM[0])
+n58 = DFF(next_FSM[2])
+n60 = DFF(next_FSM[1])
+round_index[1] = DFF(n54)
+round_index[2] = DFF(n55)
+
+n63 = NOT(round_index[0])
+n64 = NOT(round_index[3])
+n107 = NOT(n61)
+n106 = NOT(n58)
+n105 = NOT(n60)
+n59 = NOT(round_index[1])
+n62 = NOT(round_index[2])
+n80 = NOT(n69)
+n91 = NOT(n99)
+
+
+next_FSM[2] = NAND(n65, n66)
+n66 = NAND(n67, n58)
+n67 = NAND(n60, n68)
+n68 = NAND(n107, n69)
+n65 = NAND(n70, n106)
+next_FSM[1] = NAND(n71, n72)
+n72 = NAND(n73, n61)
+n71 = NAND(n75, n107)
+next_FSM[0] = NAND(n76, n77)
+n77 = NAND(n74, n105)
+n76 = NAND(n107, n78)
+n78 = NAND(n79, n80)
+n69 = NAND(n81, n82)
+n57 = NAND(n83, n84)
+n83 = NAND(n85, round_index[0])
+n56 = NAND(n86, n87)
+n87 = NAND(round_index[3], n88)
+n88 = NAND(n89, n90)
+n90 = NAND(n91, n62)
+n86 = NAND(n92, n64)
+n55 = NAND(n94, n95)
+n93 = NAND(n96, n91)
+n54 = NAND(n100, n101)
+n101 = NAND(round_index[1], n97)
+n97 = NAND(n102, n84)
+n84 = NAND(n91, n63)
+n102 = NAND(n61, n58)
+n100 = NAND(n103, n59)
+n99 = NAND(n79, n107)
+n104 = NAND(n107, n106)
+
+n95 = OR(n93, round_index[2])
+n94 = OR(n62, n89)
+
+n70 = NOR(n105, n107)
+n73 = NOR(n74, n60)
+n75 = NOR(n105, n58)
+n74 = NOR(start, n58)
+n82 = NOR(round_index[3], round_index[2])
+n81 = NOR(round_index[0], n59)
+n85 = NOR(n106, n107)
+n92 = NOR(n93, n62)
+n96 = NOR(n59, n63)
+n89 = NOR(n97, n98)
+n98 = NOR(n99, round_index[1])
+n103 = NOR(n63, n99)
+n79 = NOR(n105, n106)
+finished = NOR(n60, n104)
+
+
+
+
